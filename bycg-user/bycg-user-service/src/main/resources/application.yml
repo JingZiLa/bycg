@@ -1,0 +1,19 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql:///bycg?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5  #指定心跳时间
+    lease-expiration-duration-in-seconds: 15 #指定过期时间
+
+mybatis:
+  type-aliases-package: com.bycg.user.pojo

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bycg.user.mapper.VipUserMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="userMap" type="User">
+        <!-- 主键字段的对应 -->
+        <id property="userId" column="user_id"></id>
+        <!-- 非主键字段的对应-->
+        <result property="nickName" column="nick_name"></result>
+        <result property="loginName" column="login_name"></result>
+
+        <result property="passwordMd5" column="password_md5"></result>
+        <result property="introduceSign" column="introduce_sign"></result>
+        <result property="address" column="address"></result>
+        <result property="isDeleted" column="is_deleted"></result>
+        <result property="lockedFlag" column="locked_flag"></result>
+        <result property="createTime" column="create_time"></result>
+    </resultMap>
+
+
+    <select id="queryVipUserByPage" resultMap="userMap">
+        select * from tb_bycg_mall_user
+    </select>
+
+    <!-- 根据用户ID 修改用户状态 -->
+    <update id="editLockStatus" >
+        update tb_bycg_mall_user set locked_flag = #{lockStatus}
+        where user_id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </update>
+
+    <!-- 保存用户 -->
+    <insert id="saveUser" parameterType="User">
+        insert into tb_bycg_mall_user (user_id,nick_name,login_name,password_md5,introduce_sign,address,is_deleted,locked_flag,create_time)
+        values (#{userId},#{nickName},#{loginName},#{passwordMd5},#{introduceSign},#{address},#{isDeleted},#{lockedFlag},#{createTime})
+    </insert>
+
+    <!-- 根据用户名查询用户  -->
+    <select id="queryUserByUserName" parameterType="java.lang.String" resultMap="userMap">
+        select * from tb_bycg_mall_user where login_name = #{username}
+    </select>
+</mapper>

@@ -1,0 +1,6 @@
+com\bycg\user\mapper\VipUserMapper.class
+com\bycg\user\BycgUserApplication.class
+com\bycg\user\mapper\AdminUserMapper.class
+com\bycg\user\service\impl\UserServiceImpl.class
+com\bycg\user\service\UserService.class
+com\bycg\user\controller\UserController.class

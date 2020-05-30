@@ -1,0 +1,3 @@
+com\bycg\user\pojo\User.class
+com\bycg\user\bo\UserBo.class
+com\bycg\user\pojo\AdminUser.class
