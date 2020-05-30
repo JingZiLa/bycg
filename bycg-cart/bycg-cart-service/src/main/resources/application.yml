@@ -1,0 +1,25 @@
+server:
+  port: 8086
+spring:
+  application:
+    name: cart-service
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    url: jdbc:mysql:///bycg?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 10
+  instance:
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 15
+mybatis:
+  type-aliases-package: com.bycg.cart.pojo
+bycg:
+  jwt:
+    pubKeyPath: D:\\bycg\\rsa\\rsa.pub # 公钥地址
+    cookieName: BYCG_TOKEN
