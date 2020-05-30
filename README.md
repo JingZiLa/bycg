@@ -43,6 +43,8 @@
 
 前端技术：
 
+-前端页面取至:https://gitee.com/newbee-ltd/newbee-mall
+
 - 基础的HTML、CSS、JavaScript 
 - JQuery 
 - Bootstrap
