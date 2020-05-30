@@ -1,0 +1,16 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: manage-web-service
+  main:
+    allow-bean-definition-overriding: true
+  thymeleaf:
+    cache: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5  #指定心跳时间
+    lease-expiration-duration-in-seconds: 15 #指定过期时间

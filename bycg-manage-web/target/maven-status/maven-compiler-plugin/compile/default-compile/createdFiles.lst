@@ -1,0 +1,6 @@
+com\bycg\manage\web\client\GoodsClient.class
+com\bycg\manage\web\service\ManageService.class
+com\bycg\manage\web\client\GoodsCategoryClient.class
+com\bycg\manage\web\controller\ManageController.class
+com\bycg\manage\web\service\impl\ManageServiceImpl.class
+com\bycg\manage\web\BycgManageWebApplication.class
