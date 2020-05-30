@@ -91,5 +91,5 @@
 
 二级域名：manage.bycg.com , api.bycg.com
 
-## 2.5更多项目截图 :  https://gitee.com/jingzila/leyou-shop/tree/master/leyou-project-Images 
+## 2.5更多项目截图 :  https://gitee.com/jingzila/bycg/tree/master/assets
 
