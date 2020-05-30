@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bycg.order.mapper.OrderGoodsMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="orderGoodsMap" type="OrderGoods">
+        <!-- 主键字段的对应 -->
+        <id property="orderItemId" column="order_item_id"></id>
+        <!-- 非主键字段的对应-->
+        <result property="orderId" column="order_id"></result>
+        <result property="goodsId" column="goods_id"></result>
+        <result property="goodsName" column="goods_name"></result>
+        <result property="goodsCoverImg" column="goods_cover_img"></result>
+
+        <result property="sellingPrice" column="selling_price"></result>
+        <result property="goodsCount" column="goods_count"></result>
+        <result property="createTime" column="create_time"></result>
+    </resultMap>
+
+    <select id="querOrderGoodsById" resultMap="orderGoodsMap">
+        select * from tb_bycg_mall_order_item where  order_id = #{orderId}
+    </select>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bycg.order.mapper.OrderMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="orderMap" type="Order">
+        <!-- 主键字段的对应 -->
+        <id property="orderId" column="order_id"></id>
+        <!-- 非主键字段的对应-->
+        <result property="orderNo" column="order_no"></result>
+        <result property="userId" column="user_id"></result>
+        <result property="totalPrice" column="total_price"></result>
+        <result property="payStatus" column="pay_status"></result>
+
+        <result property="payType" column="pay_type"></result>
+        <result property="payTime" column="pay_time"></result>
+        <result property="orderStatus" column="order_status"></result>
+        <result property="extraInfo" column="extra_info"></result>
+        <result property="userName" column="user_name"></result>
+        <result property="userPhone" column="user_phone"></result>
+        <result property="userAddress" column="user_address"></result>
+        <result property="isDeleted" column="is_deleted"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="updateTime" column="update_time"></result>
+    </resultMap>
+    <!-- 查询所有订单 -->
+    <select id="queryOrderByPage" resultMap="orderMap">
+        select * from tb_bycg_mall_order
+        <if test="status != null">
+            where  order_status = #{status}
+         </if>
+    </select>
+
+    <!-- 根据订单ID 修改订单信息 -->
+    <update id="updateOrderByorderId" parameterType="Order">
+        update tb_bycg_mall_order set total_price = #{totalPrice}, update_time = #{updateTime},user_address = #{userAddress}
+        where order_id = #{orderId}
+    </update>
+
+    <!-- 根据订单ID 修该订单状态 -->
+    <update id="updateOrderStatus" >
+        update tb_bycg_mall_order set order_status = #{status} where order_id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </update>
+</mapper>
