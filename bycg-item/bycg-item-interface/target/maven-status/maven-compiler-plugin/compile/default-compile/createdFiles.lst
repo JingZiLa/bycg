@@ -1,0 +1,9 @@
+com\bycg\item\pojo\IndexConfig.class
+com\bycg\item\api\GoodsCategoryApi.class
+com\bycg\item\pojo\CartItem.class
+com\bycg\item\api\GoodsApi.class
+com\bycg\item\pojo\GoodsCategory.class
+com\bycg\item\bo\GoodsBo.class
+com\bycg\item\api\IndexConfigApi.class
+com\bycg\item\pojo\Carousel.class
+com\bycg\item\pojo\GoodsInfo.class

@@ -1,0 +1,14 @@
+com\bycg\item\controller\IndexConfigController.class
+com\bycg\item\service\IndexConfigService.class
+com\bycg\item\service\CategoryService.class
+com\bycg\item\mapper\CarouselMapper.class
+com\bycg\item\service\GoodsService.class
+com\bycg\item\service\impl\CategoryServiceImpl.class
+com\bycg\item\service\impl\IndexConfigServiceImpl.class
+com\bycg\item\mapper\GoodsCategoryMapper.class
+com\bycg\item\mapper\IndexConfigMapper.class
+com\bycg\item\controller\GoodsController.class
+com\bycg\item\service\impl\GoodsServiceImpl.class
+com\bycg\item\controller\CategoryController.class
+com\bycg\item\mapper\GoodsInfoMapper.class
+com\bycg\item\BycgItemApplication.class

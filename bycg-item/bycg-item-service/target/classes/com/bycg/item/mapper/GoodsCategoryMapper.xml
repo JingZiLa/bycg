@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bycg.item.mapper.GoodsCategoryMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="categoryMap" type="GoodsCategory">
+        <!-- 主键字段的对应 -->
+        <id property="categoryId" column="category_id"></id>
+        <!-- 非主键字段的对应-->
+        <result property="categoryLevel" column="category_level"></result>
+        <result property="parentId" column="parent_id"></result>
+        <result property="categoryName" column="category_name"></result>
+        <result property="categoryRank" column="category_rank"></result>
+
+        <result property="isDeleted" column="is_deleted"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="createUser" column="create_user"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="updateUser" column="update_user"></result>
+    </resultMap>
+
+    <!--配置查询所有用户-->
+    <select id="queryCategoryByPage" resultMap="categoryMap">
+        select * from tb_bycg_mall_goods_category where category_level = #{categoryLevel} and parent_id=#{parentId}
+    </select>
+    <!-- 保存商品分类 -->
+    <insert id="saveGoodsCategory" parameterType="GoodsCategory">
+        INSERT INTO tb_bycg_mall_goods_category (category_id,category_level,parent_id,category_name,category_rank,is_deleted,create_time,create_user,update_time,update_user) VALUES (#{categoryId}, #{categoryLevel}, #{parentId}, #{categoryName}, #{categoryRank}, #{isDeleted}, #{createTime}, #{createUser}, #{updateTime}, #{updateUser});
+    </insert>
+
+    <!-- 根据分类ID查询分类信息 -->
+    <select id="queryCategoryById" parameterType="java.lang.Long" resultMap="categoryMap">
+        select * from tb_bycg_mall_goods_category where category_id = #{categoryId};
+    </select>
+
+    <!-- 根据分类ID 更新分类数据 -->
+    <update id="updateGoodsCategory" parameterType="GoodsCategory">
+        update tb_bycg_mall_goods_category set category_name = #{categoryName}, category_rank = #{categoryRank}, update_time = #{updateTime}, update_user=#{updateUser} where category_id = #{categoryId} and category_level = #{categoryLevel} and parent_id = #{parentId};
+    </update>
+
+    <!-- 根据分类的父ID 查询分类信息 -->
+    <select id="queryCategoryByParentId" resultMap="categoryMap" parameterType="java.lang.Long">
+        select * from tb_bycg_mall_goods_category where parent_id = #{categoryId}
+    </select>
+
+    <!-- 查询所有分类信息 -->
+    <select id="queryAllCategory" resultMap="categoryMap" >
+        select * from tb_bycg_mall_goods_category  <if test="isDel != null"> where is_deleted = #{isDel}</if>
+    </select>
+</mapper>

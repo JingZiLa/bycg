@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bycg.item.mapper.IndexConfigMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="indexConfigMap" type="IndexConfig">
+        <!-- 主键字段的对应 -->
+        <id property="configId" column="config_id"></id>
+        <!-- 非主键字段的对应-->
+        <result property="configName" column="config_name"></result>
+        <result property="configType" column="config_type"></result>
+        <result property="goodsId" column="goods_id"></result>
+        <result property="redirectUrl" column="redirect_url"></result>
+
+        <result property="configRank" column="config_rank"></result>
+        <result property="isDeleted" column="is_deleted"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="createUser" column="create_user"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="updateUser" column="update_user"></result>
+    </resultMap>
+    <!-- 根据条件查询首页商品推荐 -->
+    <select id="queryIndexConfigByPage" resultMap="indexConfigMap">
+        select * from tb_bycg_mall_index_config
+        <if test="configType != null">
+            where config_type = #{configType}
+        </if>
+    </select>
+
+    <!-- 根据ID 查询首页推荐商品信息 -->
+    <select id="queryIndexConfigByIds" resultType="IndexConfig">
+        select * from tb_bycg_mall_index_config where config_id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </select>
+    <!-- 保存首页商品推荐信息 -->
+    <insert id="saveIndexConfig" parameterType="IndexConfig">
+        insert  into tb_bycg_mall_index_config (config_id,config_name,config_type,goods_id,redirect_url,config_rank,is_deleted,create_time,create_user,update_time,update_user)
+        values (#{configId},#{configName},#{configType},#{goodsId},#{redirectUrl},#{configRank},#{isDeleted},#{createTime},#{createUser},#{updateTime},#{updateUser});
+    </insert>
+    <!-- 修改首页商品推荐信息 -->
+    <update id="updateIndexConfig" parameterType="IndexConfig">
+        update tb_bycg_mall_index_config set update_time = #{updateTime}, update_user = #{updateUser},config_name = #{configName},config_rank = #{configRank},config_type = #{configType},goods_id = #{goodsId},redirect_url = #{redirectUrl}
+        where config_id = #{configId}
+    </update>
+
+    <!-- 根据ID 删除首页推荐商品设置 (可批量) -->
+    <delete id="deleteCarouselByIds">
+        delete from tb_bycg_mall_index_config where config_id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

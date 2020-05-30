@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bycg.item.mapper.CarouselMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="carouselMap" type="Carousel">
+        <!-- 主键字段的对应 -->
+        <id property="carouselId" column="carousel_id"></id>
+        <!-- 非主键字段的对应-->
+        <result property="carouselUrl" column="carousel_url"></result>
+        <result property="redirectUrl" column="redirect_url"></result>
+        <result property="carouselRank" column="carousel_rank"></result>
+        <result property="isDeleted" column="is_deleted"></result>
+
+        <result property="createTime" column="create_time"></result>
+        <result property="createUser" column="create_user"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="updateUser" column="update_user"></result>
+    </resultMap>
+    <!--  查询所有的轮播图配置 -->
+    <select id="queryCarouselByPage" resultMap="carouselMap">
+        select * from tb_bycg_mall_carousel
+    </select>
+
+    <!-- 保存新增轮播图配置 -->
+    <insert id="saveCarousel" parameterType="Carousel">
+        insert into tb_bycg_mall_carousel (carousel_id,carousel_url,redirect_url,carousel_rank,is_deleted,create_time,create_user,update_time,update_user)
+        values (#{carouselId},#{carouselUrl},#{redirectUrl},#{carouselRank},#{isDeleted},#{createTime},#{createUser},#{updateTime},#{updateUser});
+    </insert>
+
+    <!-- 修改轮播图配置 -->
+    <update id="updateCarousel" parameterType="Carousel">
+        update tb_bycg_mall_carousel set carousel_url = #{carouselRank} , redirect_url = #{redirectUrl},carousel_rank = #{carouselRank},update_time=#{updateTime},update_user=#{updateUser}
+        where carousel_id = #{carouselId};
+    </update>
+
+    <!-- 根据ID 查询轮播图配置 -->
+    <select id="queryCarouselByIds" resultType="Carousel">
+       select * from tb_bycg_mall_carousel where carousel_id in
+       <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </select>
+
+    <!-- 根据ID 删除 首页轮播图配置 (可批量) -->
+    <delete id="deleteCarouselByIds">
+        delete from tb_bycg_mall_carousel where carousel_id in
+        <foreach collection="ids" open="(" separator="," close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bycg.item.mapper.GoodsInfoMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+  <resultMap id="goodsInfoMap" type="GoodsInfo">
+      <!-- 主键字段的对应 -->
+      <id property="goodsId" column="goods_id"></id>
+      <!-- 非主键字段的对应-->
+      <result property="goodsName" column="goods_name"></result>
+      <result property="goodsIntro" column="goods_intro"></result>
+      <result property="goodsCategoryId" column="goods_category_id"></result>
+      <result property="goodsCoverImg" column="goods_cover_img"></result>
+
+      <result property="goodsCarousel" column="goods_carousel"></result>
+      <result property="goodsDetailContent" column="goods_detail_content"></result>
+      <result property="originalPrice" column="original_price"></result>
+      <result property="sellingPrice" column="selling_price"></result>
+      <result property="stockNum" column="stock_num"></result>
+      <result property="tag" column="tag"></result>
+      <result property="goodsSellStatus" column="goods_sell_status"></result>
+      <result property="createUser" column="create_user"></result>
+      <result property="createTime" column="create_time"></result>
+      <result property="updateUser" column="update_user"></result>
+      <result property="updateTime" column="update_time"></result>
+  </resultMap>
+
+
+  <!--配置查询所有用户-->
+    <select id="queryGoodsByPage" resultMap="goodsInfoMap">
+        select * from tb_bycg_mall_goods_info where 1=1
+        <if test="keyword != null and keyword != ''">
+            and goods_name like #{keyword}
+        </if>
+        <if test="categoryId != null and categoryId gte 0">
+            and goods_category_id = #{categoryId}
+        </if>
+        <if test="configType gte 3 and configType lte 5">
+           and goods_id in (select goods_id from tb_bycg_mall_index_config where config_type = #{configType})
+        </if>
+
+    </select>
+
+    <update id="editStatus" >
+        update tb_bycg_mall_goods_info
+        set goods_sell_status = #{statusNum}
+        where goods_id in
+         <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+         </foreach>
+    </update>
+
+
+    <!-- 根据商品ID 查询商品信息 -->
+    <select id="queryGoodsById" resultMap="goodsInfoMap" parameterType="java.lang.Long">
+        select * from tb_bycg_mall_goods_info where goods_id = #{goodsId}
+    </select>
+</mapper>
