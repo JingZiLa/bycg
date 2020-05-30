@@ -1,0 +1,23 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: bycg-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka  #把网关注册给eureka
+    registry-fetch-interval-seconds: 5            #设置拉取服务间隔时间
+zuul:
+  prefix: /api #指定路由前缀
+  routes:
+    manage-web-service: /manage/**  #指定路由到后台管理的微服务
+    portal-web-service: /portal/** #指定路由到前台系统微服务
+    item-service: /item/**  #指定路由到后台管理的微服务
+    user-service: /user/** #指定路由到用户微服务
+    order-service: /order/** #指定路由到用户微服务
+    auth-service: /auth/** #指定路由到授权中心服务
+    cart-service: /cart/** #指定路由到购物车服务
+  add-host-header: true  #网关转发时添加头地址信息
+  sensitive-headers: #覆盖敏感的头信息
+
