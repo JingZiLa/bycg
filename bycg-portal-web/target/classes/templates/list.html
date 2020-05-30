@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>列表</title>
+</head>
+<body>
+<h3>list页面</h3>
+<!--<table>-->
+<!--&lt;!&ndash; js -> json &ndash;&gt;-->
+<!--&lt;!&ndash; 标签 jstl struts2 springmvc  &ndash;&gt;-->
+<!--&lt;!&ndash; Java代码  ** 不推荐 &ndash;&gt;-->
+
+<!--		<tr>-->
+<!--				<td th:each="category1 : ${indexVO.getCategoryLevel1()}">-->
+<!--					<div>-->
+<!--						名称：<span th:each="c1 : ${category1}" th:text="${c1.value}"></span>-->
+<!--					</div>-->
+<!--				</td>-->
+
+
+<!--				&lt;!&ndash; <td>-->
+<!--					<div>-->
+<!--						<img style="width:220px;height:220px" src="images/clean01.jpg" /><br/>-->
+<!--						  名称：空气净化器<br/>-->
+<!--						介绍：美国KELITE空气净化器<br/>-->
+<!--						 价格：1289.99元-->
+<!--					</div>-->
+<!--				</td>-->
+<!--				<td>-->
+<!--					<div>-->
+<!--						<img style="width:220px;height:220px" src="images/coffee01.jpg" /><br/>-->
+<!--						  名称：咖啡机<br/>-->
+<!--						介绍：东菱DL-KF7001意式咖啡机<br./>-->
+<!--						 价格：2089.99元-->
+<!--					</div>-->
+<!--				</td>-->
+<!--				<td>-->
+<!--					<div>-->
+<!--						<img style="width:220px;height:220px" src="images/clean02.jpg" /><br/>-->
+<!--						  名称：除湿机<br/>-->
+<!--						介绍：德龙 DD30P除湿机<br/>-->
+<!--						 价格：1339.0元-->
+<!--					</div>-->
+<!--				</td> &ndash;&gt;-->
+<!--		</tr>-->
+
+<!--		<tr><td th:each="category2 : ${indexVO.getCategoryLevel2()}">-->
+<!--			<div>-->
+<!--				名称：<span th:each="c2 : ${category2}" th:text="${c2.value}"></span>-->
+<!--			</div>-->
+<!--		</td></tr>-->
+
+<!--		<tr>-->
+<!--			<td th:each="category3 : ${indexVO.getCategoryLevel3()}">-->
+<!--				<div>-->
+<!--					ID：<span th:each="c3 : ${category3}" th:if="${c3.getKey() == 'categoryId'}" th:text="${c3.value}"></span>-->
+<!--				</div>-->
+<!--				<br>-->
+<!--				<div>-->
+<!--					名称：<span th:each="c3 : ${category3}" th:if="${c3.getKey() == 'categoryName'}" th:text="${c3.value}"></span>-->
+<!--				</div>-->
+<!--			</td>-->
+
+<!--		</tr>-->
+<!--	</table>-->
+
+<div style="margin-bottom: 150px" >
+    <th:block th:each="c1 : ${indexVO.getCategoryMap()}" >
+        <div>一级分类：<span th:text="${c1.getKey()}"></span></div>
+        <th:block th:each=" c2 : ${c1.value}">
+                <br>
+            <div>二级分类：<span th:text="${c2.getKey()}"></span></div>
+            <th:block th:each=" c3 : ${c2.value}">
+                <br>
+                <div>三级分类ID：<span th:text="${c3.getKey()}"></span></div>
+                <div>三级分类名称：<span th:text="${c3.getValue()}"></span></div>
+                <br>
+            </th:block>
+                <br>
+        </th:block>
+    </th:block>
+
+</div>
+</div>
+</body>
+</html>

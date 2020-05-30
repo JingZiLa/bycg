@@ -1,0 +1,8 @@
+com\bycg\portal\web\controller\PortalWebController.class
+com\bycg\portal\web\client\IndexConfigClient.class
+com\bycg\portal\web\client\GoodsClient.class
+com\bycg\portal\web\client\GoodsCategoryClient.class
+com\bycg\portal\web\vo\IndexVO.class
+com\bycg\portal\web\BycgPortalApplication.class
+com\bycg\portal\web\service\impl\PortalWebServiceImpl.class
+com\bycg\portal\web\service\PortalWebService.class

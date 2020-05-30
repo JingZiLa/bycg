@@ -1,0 +1,23 @@
+server:
+  port: 9002
+spring:
+  application:
+    name: portal-web-service
+  main:
+    allow-bean-definition-overriding: true
+  thymeleaf:
+    cache: false
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10086/eureka
+  instance:
+    lease-renewal-interval-in-seconds: 5  #指定心跳时间
+    lease-expiration-duration-in-seconds: 15 #指定过期时间
+bycg:
+  jwt:
+    secret: bycg@Login(Auth}*^31)&bycg% # 登录校验的密钥
+    pubKeyPath: D:\\bycg\\rsa\\rsa.pub # 公钥地址
+    priKeyPath: D:\\bycg\\rsa\\rsa.pri # 私钥地址
+    expire: 30 # 过期时间,单位分钟
+    cookieName: BYCG_TOKEN
