@@ -1,0 +1,6 @@
+com\bycg\config\LeyouCorsConfig.class
+com\bycg\upload\service\FileUploadService.class
+com\bycg\BycgUploadApplication.class
+com\bycg\upload\controller\FileUploadController.class
+com\bycg\upload\service\impl\FileUploadServiceImpl.class
+com\bycg\config\FastClientImporter.class
